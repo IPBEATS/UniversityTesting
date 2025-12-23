@@ -18,5 +18,7 @@ public class ButtonsClickPage extends BasePage {
     public static By modalClose2 = By.xpath("(//button[@class='btn btn-default'])[2]");
 
     public static By buttonClick3 = By.id("button3");
+    public static By modalResponse3 = By.xpath("//b[text()='Action Move & Click']");
+    public static By modalClose3 = By.xpath("(//button[@class='btn btn-default'])[3]");
 
 }

@@ -1,9 +1,5 @@
 import org.example.Config.Browser;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -25,9 +21,7 @@ public class ButtonsClickTests {
         driver.manage().window().maximize();
         driver.get(pageUrl);
 
-//        WebElement element = driver.findElement(buttonClick1);
-//        WebElement btn2 = driver.findElement(buttonClick2);
-//        WebElement btn3 = driver.findElement(buttonClick3);
+
     }
 
     @Test
@@ -50,18 +44,18 @@ public class ButtonsClickTests {
 
     @Test
     public void step_3(){
-        WebElement btn3 = driver.findElement(buttonClick3);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(btn3).click().perform();
+        driver.findElement(buttonClick3).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5)).
+                until(ExpectedConditions.elementToBeClickable(modalClose3));
+        Assert.assertTrue(driver.findElement(modalResponse3).isDisplayed());
+        driver.findElement(modalClose3).click();
     }
 
 
-
-
-//    @AfterTest
-//    public void afterTest() {
-//        driver.quit();
-//    }
+    @AfterTest
+    public void afterTest() {
+        driver.quit();
+    }
 }
 
 
