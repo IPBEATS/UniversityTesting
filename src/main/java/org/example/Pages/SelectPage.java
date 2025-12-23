@@ -29,6 +29,13 @@ public class SelectPage extends BasePage {
     public static By orangeButton = By.xpath("//input[@type='radio'][@value='orange']");
     public static By purpleButton = By.xpath("//input[@type='radio'][@value='purple']");
 
+    public static By radioEnabled = By.xpath("//input[@value='lettuce']");
+    public static By radioDisabled = By.xpath("//input[@value='cabbage']");
+    public static By radioChecked = By.xpath("//input[@value='pumpkin']");
+
+    public static By selectFruits = By.id("fruit-selects");
+    public static By disabledOption = By.xpath("//select//option[@value='orange']");
+    public static By selectedOption = By.xpath("//select//option[@value='grape']");
 
 
 

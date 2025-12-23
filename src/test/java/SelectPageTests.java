@@ -89,6 +89,17 @@ public class SelectPageTests {
         Assert.assertFalse(selectPage.elementSelect(orangeButton));
     }
 
+    @Test
+    public void selectedAndDisabled(){
+        Assert.assertTrue(driver.findElement(radioEnabled).isEnabled());
+        Assert.assertFalse(driver.findElement(radioDisabled).isEnabled());
+        Assert.assertTrue(driver.findElement(radioChecked).isEnabled());
+
+        Assert.assertEquals(driver.findElement(disabledOption).getAttribute("disabled"), "true");
+        Assert.assertEquals(driver.findElement(selectedOption).getAttribute("selected"), "true");
+    }
+
+
     @AfterTest
     public void afterTest(){
         driver.quit();
