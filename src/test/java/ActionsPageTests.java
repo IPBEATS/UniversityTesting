@@ -1,3 +1,4 @@
+import Base.BaseTest;
 import org.example.Config.Browser;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
@@ -10,19 +11,12 @@ import org.testng.annotations.Test;
 
 import static org.example.Pages.ActionsPage.*;
 
-public class ActionsPageTests {
-    private WebDriver driver;
-    private String pageUrl = "https://webdriveruniversity.com/Actions/index.html";
-
-    @BeforeTest
-    public void beforeTest(){
-        driver = Browser.createDriver();
-        driver.manage().window().maximize();
-        driver.get(pageUrl);
-    }
+public class ActionsPageTests extends BaseTest {
+    public static String pageUrl = "https://webdriveruniversity.com/Actions/index.html";
 
     @Test
     public void step_1(){
+        driver.get(pageUrl);
         WebElement drag = driver.findElement(draggableBox);
         WebElement drop = driver.findElement(droppableBox);
         Actions actions = new Actions(driver);
@@ -68,13 +62,5 @@ public class ActionsPageTests {
         driver.findElement(link3_2).click();
         Alert alert3_2 = driver.switchTo().alert();
         alert3_2.accept();
-
     }
-
-
-    @AfterTest
-    public void afterTest(){
-        driver.quit();
-    }
-
 }

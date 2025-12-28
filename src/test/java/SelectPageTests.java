@@ -1,4 +1,6 @@
+import Base.BaseTest;
 import org.example.Config.Browser;
+import org.example.Pages.Base.BasePage;
 import org.example.Pages.SelectPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -9,17 +11,14 @@ import org.testng.annotations.Test;
 
 import static org.example.Pages.SelectPage.*;
 
-public class SelectPageTests {
-    private WebDriver driver;
+public class SelectPageTests extends BaseTest {
+
     private SelectPage selectPage;
     private String pageUrl = "https://webdriveruniversity.com/Dropdown-Checkboxes-RadioButtons/index.html";
 
     @BeforeTest
-    public void beforeTest() {
-        driver = Browser.createDriver();
-        driver.manage().window().maximize();
+    public void beforeTest1(){
         driver.get(pageUrl);
-        selectPage = new SelectPage(driver);
     }
 
     @Test
@@ -41,6 +40,8 @@ public class SelectPageTests {
     // даже в том случае если оно уже было до начала тестов, и проверяю что это работает.
     @Test
     public void checkBox(){
+        selectPage = new SelectPage(driver);
+
         selectPage.setCheckBoxState(checkBox1, true);
         Assert.assertTrue(selectPage.elementSelect(checkBox1));
         selectPage.setCheckBoxState(checkBox1, false);
@@ -97,12 +98,6 @@ public class SelectPageTests {
 
         Assert.assertEquals(driver.findElement(disabledOption).getAttribute("disabled"), "true");
         Assert.assertEquals(driver.findElement(selectedOption).getAttribute("selected"), "true");
-    }
-
-
-    @AfterTest
-    public void afterTest(){
-        driver.quit();
     }
 
 }

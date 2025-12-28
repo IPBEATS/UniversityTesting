@@ -1,3 +1,4 @@
+import Base.BaseTest;
 import org.example.Config.Browser;
 
 import org.openqa.selenium.WebDriver;
@@ -8,8 +9,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.example.Pages.ContactUsPage.*;
 
-public class ContactUsTests {
-    private WebDriver driver;
+public class ContactUsTests extends BaseTest {
+
     private String pageUrl = "https://webdriveruniversity.com/Contact-Us/contactus.html";
 
     private String nameValue = "Vito";
@@ -28,15 +29,10 @@ public class ContactUsTests {
             " Well, then we're out of luck. It was the 43rd year. There was a war going on. Landing in Sicily, Italian-speaking soldiers were needed." +
             " I was 18, and I didn't want to go to jail. Who says you can't go back to your homeland?..\"";
 
-    @BeforeTest
-    public void beforeTest(){
-        driver = Browser.createDriver();
-        driver.manage().window().maximize();
-        driver.get(pageUrl);
-    }
 
     @Test
     public void openPage(){
+        driver.get(pageUrl);
         Assert.assertTrue(driver.findElement(headerContact).isDisplayed());
     }
 
@@ -61,12 +57,6 @@ public class ContactUsTests {
         driver.findElement(textComments).sendKeys(commentsValue);
         driver.findElement(buttonSubmit).click();
         Assert.assertTrue(driver.findElement(resultMessage).isDisplayed());
-    }
-
-
-    @AfterTest
-    public void afterTest(){
-        driver.quit();
     }
 
 }

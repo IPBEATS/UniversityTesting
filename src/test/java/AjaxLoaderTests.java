@@ -1,3 +1,4 @@
+import Base.BaseTest;
 import org.example.Config.Browser;
 import org.example.Pages.AjaxLoaderPage;
 import org.example.Pages.SelectPage;
@@ -14,19 +15,13 @@ import java.time.Duration;
 import static org.example.Pages.AjaxLoaderPage.*;
 import static org.example.Pages.ButtonsClickPage.modalClose3;
 
-public class AjaxLoaderTests {
-    private WebDriver driver;
-    private String pageUrl = "https://webdriveruniversity.com/Ajax-Loader/index.html";
+public class AjaxLoaderTests extends BaseTest {
 
-    @BeforeTest
-    public void beforeTest(){
-        driver = Browser.createDriver();
-        driver.manage().window().maximize();
-        driver.get(pageUrl);
-    }
+    private String pageUrl = "https://webdriveruniversity.com/Ajax-Loader/index.html";
 
     @Test
     public void step_1(){
+        driver.get(pageUrl);
         new WebDriverWait(driver, Duration.ofSeconds(10)).
                 until(ExpectedConditions.elementToBeClickable(clickButton));
         driver.findElement(clickButton).click();
@@ -34,10 +29,5 @@ public class AjaxLoaderTests {
                 until(ExpectedConditions.visibilityOfElementLocated(responseMessage));
         Assert.assertTrue(driver.findElement(responseMessage).isDisplayed());
         driver.findElement(closeButton).click();
-    }
-
-    @AfterTest
-    public void afterTest(){
-        driver.quit();
     }
 }

@@ -1,3 +1,4 @@
+import Base.BaseTest;
 import org.example.Config.Browser;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,21 +12,13 @@ import java.time.Duration;
 
 import static org.example.Pages.ButtonsClickPage.*;
 
-public class ButtonsClickTests {
-    private WebDriver driver;
+public class ButtonsClickTests extends BaseTest {
+
     private String pageUrl = "https://webdriveruniversity.com/Click-Buttons/index.html";
-
-    @BeforeTest
-    public void beforeTest() {
-        driver = Browser.createDriver();
-        driver.manage().window().maximize();
-        driver.get(pageUrl);
-
-
-    }
 
     @Test
     public void step_1() {
+        driver.get(pageUrl);
         driver.findElement(buttonClick1).click();
         new WebDriverWait(driver, Duration.ofSeconds(5)).
                 until(ExpectedConditions.elementToBeClickable(modalClose1));
@@ -51,11 +44,6 @@ public class ButtonsClickTests {
         driver.findElement(modalClose3).click();
     }
 
-
-    @AfterTest
-    public void afterTest() {
-        driver.quit();
-    }
 }
 
 
